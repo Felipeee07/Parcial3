@@ -1,4 +1,10 @@
-//espero se guarde
+/**
+ * Controlador principal del formulario de gestión de producciones audiovisuales.
+ * Maneja las operaciones CRUD, la carga en tabla, la interacción con el usuario
+ * y la comunicación con el servicio de almacenamiento.
+ *
+ * @author Felipe Parra
+ */
 
 package co.edu.poli.parcial.controlador;
 
@@ -38,9 +44,14 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  INITIALIZE
     // -------------------------------------------------------------------------
+
+    /**
+     * Inicializa el controlador, configurando la tabla, los combos,
+     * las columnas y el servicio CRUD interno.
+     */
     @FXML
     public void initialize() {
-        servicio = new ImplOperacionCrud(); // Lista interna vacía al iniciar
+        servicio = new ImplOperacionCrud();
         datos = FXCollections.observableArrayList();
         tabla.setItems(datos);
 
@@ -75,6 +86,12 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  CREAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Crea una nueva producción audiovisual a partir de los datos del formulario.
+     * Valida que el código no exista previamente y agrega el objeto tanto a la tabla
+     * como al servicio interno.
+     */
     @FXML
     void accionCrear() {
         try {
@@ -114,6 +131,11 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  BUSCAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Busca una producción audiovisual según el código ingresado.
+     * Si la encuentra, rellena los campos del formulario.
+     */
     @FXML
     void accionBuscar() {
         String codigo = txtCodigo.getText().trim();
@@ -128,6 +150,11 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  MODIFICAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Modifica el registro seleccionado en la tabla con los nuevos valores del formulario.
+     * También actualiza el servicio interno.
+     */
     @FXML
     void accionModificar() {
         try {
@@ -176,6 +203,11 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  ELIMINAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Elimina el registro seleccionado de la tabla y del servicio interno.
+     * Solicita confirmación al usuario antes de eliminar.
+     */
     @FXML
     void accionEliminar() {
         try {
@@ -203,17 +235,26 @@ public class FormularioControlador {
     }
 
     // -------------------------------------------------------------------------
-    //  CARGAR DESDE ARCHIVO (solo memoria interna)
+    //  DESERIALIZAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Carga en memoria los datos almacenados previamente en archivo.
+     * No actualiza directamente la tabla; se debe presionar “Listar todo”.
+     */
     @FXML
     void accionDeserializar() {
-        servicio.cargarDesdeArchivo(); // Solo carga lista interna
+        servicio.cargarDesdeArchivo();
         info("Datos cargados en memoria. Ahora presione 'Listar todo' para mostrarlos.");
     }
 
     // -------------------------------------------------------------------------
-    //  GUARDAR EN ARCHIVO
+    //  SERIALIZAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Guarda los datos existentes en la lista interna dentro de un archivo externo.
+     */
     @FXML
     void accionSerializar() {
         servicio.guardarArchivo();
@@ -221,8 +262,12 @@ public class FormularioControlador {
     }
 
     // -------------------------------------------------------------------------
-    //  LISTAR TODO EN TABLA
+    //  LISTAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Refresca la tabla con todos los elementos almacenados en el servicio.
+     */
     @FXML
     void accionListar() {
         datos.setAll(servicio.listarTodos());
@@ -230,8 +275,15 @@ public class FormularioControlador {
     }
 
     // -------------------------------------------------------------------------
-    //  SELECCIÓN DE TABLA
+    //  SELECCIÓN TABLA
     // -------------------------------------------------------------------------
+
+    /**
+     * Evento al seleccionar un elemento de la tabla.
+     * Rellena los campos con los datos del objeto seleccionado.
+     *
+     * @param event evento del mouse al hacer clic en la tabla
+     */
     @FXML
     void displaySelected(MouseEvent event) {
         ProduccionAudiovisual p = tabla.getSelectionModel().getSelectedItem();
@@ -241,6 +293,12 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  LLENAR CAMPOS
     // -------------------------------------------------------------------------
+
+    /**
+     * Llena los campos del formulario según el tipo de producción seleccionada.
+     *
+     * @param p producción audiovisual seleccionada
+     */
     private void fillFields(ProduccionAudiovisual p) {
         txtCodigo.setText(p.getCodigo());
         txtTitulo.setText(p.getTitulo());
@@ -262,6 +320,10 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  LIMPIAR
     // -------------------------------------------------------------------------
+
+    /**
+     * Limpia todos los campos del formulario y restablece el combo a su valor inicial.
+     */
     private void clear() {
         txtCodigo.clear();
         txtTitulo.clear();
@@ -276,10 +338,21 @@ public class FormularioControlador {
     // -------------------------------------------------------------------------
     //  ALERTAS
     // -------------------------------------------------------------------------
+
+    /**
+     * Muestra una alerta tipo WARNING.
+     *
+     * @param msg mensaje a mostrar
+     */
     private void alerta(String msg) {
         new Alert(Alert.AlertType.WARNING, msg).showAndWait();
     }
 
+    /**
+     * Muestra una alerta informativa.
+     *
+     * @param msg mensaje a mostrar
+     */
     private void info(String msg) {
         new Alert(Alert.AlertType.INFORMATION, msg).showAndWait();
     }
