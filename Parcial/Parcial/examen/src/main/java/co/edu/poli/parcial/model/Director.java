@@ -3,37 +3,37 @@ package co.edu.poli.parcial.model;
 import java.io.Serializable;
 
 /**
- * Clase que representa a un director de una producción audiovisual.
- * 
- * <p>Contiene los datos básicos de identificación y nacionalidad
- * del director. Implementa la interfaz {@link Serializable}
- * para permitir su persistencia en archivos.</p>
- * 
+ * Representa a un director de una producción audiovisual.
+ *
+ * <p>Incluye información básica como su identificador, nombre y nacionalidad.
+ * Implementa {@link Serializable} para permitir su almacenamiento en archivos
+ * durante los procesos de serialización.</p>
+ *
  * @author Felipe Parra
  */
 public class Director implements Serializable {
 
-    /** Identificador único del director */
+    /** Identificador único del director. */
     private String id;
 
-    /** Nombre completo del director */
+    /** Nombre completo del director. */
     private String nombre;
 
-    /** Nacionalidad del director */
+    /** Nacionalidad o país de origen del director. */
     private String nacionalidad;
 
     /**
-     * Constructor vacío por defecto.
-     * <p>Permite crear un objeto {@code Director} sin inicializar sus atributos.</p>
+     * Constructor vacío que permite crear un objeto {@code Director}
+     * sin inicializar sus atributos.
      */
     public Director() {}
 
     /**
-     * Constructor que inicializa todos los atributos del director.
-     * 
-     * @param id identificador único del director
-     * @param nombre nombre completo del director
-     * @param nacionalidad país o nacionalidad del director
+     * Constructor que permite crear un director con todos sus atributos inicializados.
+     *
+     * @param id            identificador único del director
+     * @param nombre        nombre completo del director
+     * @param nacionalidad  nacionalidad o país del director
      */
     public Director(String id, String nombre, String nacionalidad) {
         this.id = id;
@@ -42,8 +42,8 @@ public class Director implements Serializable {
     }
 
     /**
-     * Obtiene el identificador único del director.
-     * 
+     * Obtiene el identificador del director.
+     *
      * @return id del director
      */
     public String getId() {
@@ -51,17 +51,17 @@ public class Director implements Serializable {
     }
 
     /**
-     * Asigna un nuevo identificador al director.
-     * 
-     * @param id nuevo id del director
+     * Establece el identificador del director.
+     *
+     * @param id nuevo identificador del director
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Obtiene el nombre completo del director.
-     * 
+     * Obtiene el nombre del director.
+     *
      * @return nombre del director
      */
     public String getNombre() {
@@ -70,7 +70,7 @@ public class Director implements Serializable {
 
     /**
      * Asigna un nuevo nombre al director.
-     * 
+     *
      * @param nombre nuevo nombre del director
      */
     public void setNombre(String nombre) {
@@ -79,7 +79,7 @@ public class Director implements Serializable {
 
     /**
      * Obtiene la nacionalidad del director.
-     * 
+     *
      * @return nacionalidad del director
      */
     public String getNacionalidad() {
@@ -87,8 +87,8 @@ public class Director implements Serializable {
     }
 
     /**
-     * Asigna una nueva nacionalidad al director.
-     * 
+     * Establece la nacionalidad del director.
+     *
      * @param nacionalidad nueva nacionalidad del director
      */
     public void setNacionalidad(String nacionalidad) {
